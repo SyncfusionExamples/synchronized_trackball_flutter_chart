@@ -1,0 +1,2 @@
+# synchronized_trackball_flutter_chart
+Synchronized trackball in Flutter charts
