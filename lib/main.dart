@@ -52,17 +52,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// Trackball behavior instances for the two charts.
 TrackballBehavior trackBall1 =
     TrackballBehavior(enable: true, activationMode: ActivationMode.singleTap);
 TrackballBehavior trackBall2 =
     TrackballBehavior(enable: true, activationMode: ActivationMode.singleTap);
 
-// Controllers for accessing and manipulating the series in the charts.
 ChartSeriesController? _secondChartController;
 ChartSeriesController? _firstChartController;
 
-// Variables to store the trackball positions for synchronization.
 Offset? _firstPosition;
 Offset? _secondPosition;
 
@@ -76,22 +73,18 @@ class FirstChart extends StatefulWidget {
 }
 
 class FirstChartState extends State<FirstChart> {
-  // Declaring a field to check whether the user is interacting with the chart.
   bool _isInteractive = false;
 
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
-      // Set to true when user touch on the chart.
       onChartTouchInteractionDown: (ChartTouchInteractionArgs tapArgs) {
         _isInteractive = true;
       },
-      // Set to false when user touched the chart and hidden the visible Trackball.
       onChartTouchInteractionUp: (ChartTouchInteractionArgs tapArgs) {
         _isInteractive = false;
         trackBall2.hide();
       },
-      // Displayed the trackball when tap on the chart.
       onTrackballPositionChanging: (TrackballArgs trackballArgs) {
         if (_isInteractive) {
           _secondPosition = _secondChartController!.pointToPixel(
@@ -141,22 +134,18 @@ class SecondChart extends StatefulWidget {
 }
 
 class SecondChartState extends State<SecondChart> {
-  // Declaring a field to check whether the user is interacting with the chart.
   bool _isInteractive = false;
 
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
-      // Set to false when user touched the chart and hidden the visible Trackball.
       onChartTouchInteractionDown: (ChartTouchInteractionArgs tapArgs) {
         _isInteractive = true;
       },
-      // Set to false when user touched the chart and hidden the visible Trackball.
       onChartTouchInteractionUp: (ChartTouchInteractionArgs tapArgs) {
         _isInteractive = false;
         trackBall1.hide();
       },
-      // Displayed the trackball when tap on the chart.
       onTrackballPositionChanging: (TrackballArgs trackballArgs) {
         if (_isInteractive) {
           _firstPosition = _firstChartController!.pointToPixel(
